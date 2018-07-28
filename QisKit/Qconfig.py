@@ -1,23 +1,60 @@
+# --------------------------------------------------------------------------------
 # Before you can use the jobs API, you need to set up an access token.
-# Log in to the IBM Q experience. Under "Account", generate a personal
-# access token. Replace 'PUT_YOUR_API_TOKEN_HERE' below with the quoted
-# token string. Uncomment the APItoken variable, and you will be ready to go.
+# Log in to the Quantum Experience. Under "Account", generate a personal
+# access token. There are two ways to set your API token
+#
+# METHOD-1:
+#    Replace "None" value of variable APItoken with the quoted token string.
+#    Uncomment the APItoken variable, and you will be ready to go.
+#
+# METHOD-2:
+#   The APIToken can be set as an environment variable in your shell session. For
+#   example, in your ~/.bash_profile or ~/.bashrc add:
+#   .. code-block:: bash
+#      export IBMQE_API="your_secret_api_string"
+#
+#   and then restart your terminal session. This will add the ``$IBMQE_API`` as an
+#   environment variable that can be accessed by the script.
+#   Once imported, you can check the values have set using print:
+#   .. code-block:: python
+#       import Qconfig
+#       print(Qconfig.APItoken, Qconfig.config['url'])
+# --------------------------------------------------------------------------------
 
-APItoken = '3037f307c9867729cf5019cb486a39df66b5a562d1d4803b5fcdebcf5303ce233bff17a2065e89878b0b63ec8a3dab3128a7812a8647c7612b6693ec61aec5d2'
+import os
+
+# Replace 'None' with your own API token (put it within quotes)
+# Optionally, you can set the environment variable IBMQE_API as decribed in the
+# aforementioned note. NOTE: If you set your APItoken below, it will OVERRIDE the
+# value of the environment variable.
+
+APItoken = '51162e6b8cb7b22134162a0bf8e4bb75342cf517cc864ba19fa6d27df5f323f741b1d978002f4aaac84e3c60a72acc7630f2f4313fbde4aa490ace3df8384ec1'
 
 config = {
-    'url': 'https://quantumexperience.ng.bluemix.net/api',
-
-    # If you have access to IBM Q features, you also need to fill the "hub",
-    # "group", and "project" details. Replace "None" on the lines below
-    # with your details from Quantum Experience, quoting the strings, for
-    # example: 'hub': 'my_hub'
-    # You will also need to update the 'url' above, pointing it to your custom
-    # URL for IBM Q.
-    'hub': None,
-    'group': None,
-    'project': None
+  "url": 'https://quantumexperience.ng.bluemix.net/api'
 }
 
-if 'APItoken' not in locals():
-    raise Exception('Please set up your access token. See Qconfig.py.')
+def update_token(token=None):
+    """Update the APItoken.
+
+       :param token: The API token.(optional argument)
+              If thisis set, it must be a string. The default value is None
+    """
+    global APItoken
+
+    # If a token is given as an argument, use it.
+    if token:
+        APItoken = token
+    else:
+        # First check if APItoken is already set. If so, just use it.
+        if APItoken:
+            # Do nothing. The APItoken will override
+            pass
+        else:
+            APItoken = os.getenv("IBMQE_API")
+
+    assert (APItoken not in (None, '') and type(APItoken) is str), "Please set up a valid API access token. See Qconfig.py."
+
+# Update the APItoken
+update_token()
+
