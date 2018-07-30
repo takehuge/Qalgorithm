@@ -28,7 +28,7 @@ import os
 # aforementioned note. NOTE: If you set your APItoken below, it will OVERRIDE the
 # value of the environment variable.
 
-APItoken = '51162e6b8cb7b22134162a0bf8e4bb75342cf517cc864ba19fa6d27df5f323f741b1d978002f4aaac84e3c60a72acc7630f2f4313fbde4aa490ace3df8384ec1'
+APItoken = None
 
 config = {
   "url": 'https://quantumexperience.ng.bluemix.net/api'
