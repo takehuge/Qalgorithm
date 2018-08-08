@@ -51,7 +51,7 @@ def update_token(token=None):
             # Do nothing. The APItoken will override
             pass
         else:
-            APItoken = os.getenv("IBMQE_API")
+            APItoken = os.getenv("IBMQE_API") ## stored in environment (.profile)
 
     assert (APItoken not in (None, '') and type(APItoken) is str), "Please set up a valid API access token. See Qconfig.py."
 
