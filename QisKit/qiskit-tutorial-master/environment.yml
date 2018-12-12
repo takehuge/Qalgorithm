@@ -1,0 +1,10 @@
+name: Qiskitenv
+dependencies:
+- python=3
+- pip
+- notebook
+- ipywidgets
+- pip:
+  - qiskit
+  - qiskit-aqua
+  - qiskit-aqua-chemistry

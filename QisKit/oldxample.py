@@ -4,7 +4,8 @@ import Qconfig
 import getpass
 import time
 from qiskit import ClassicalRegister, QuantumRegister, QuantumCircuit
-from qiskit import available_backends, execute, register, least_busy
+from qiskit import available_backends, execute, register
+from qiskit.backends.ibmq import least_busy
 
 # import basic plot tools
 from qiskit.tools.visualization import plot_histogram, circuit_drawer
