@@ -1,2 +1,2 @@
 from qiskit import IBMQ
-IBMQ.save_account("3037f307c9867729cf5019cb486a39df66b5a562d1d4803b5fcdebcf5303ce233bff17a2065e89878b0b63ec8a3dab3128a7812a8647c7612b6693ec61aec5d2")
+IBMQ.save_account("")
