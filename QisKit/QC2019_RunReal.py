@@ -17,7 +17,7 @@ qc.measure(q[1],c[1])
 print("Quantum Circuit:\n %s" %qc)
 
 # run for real
-job = qiskit.execute(qc, provider.get_backend('ibmq_16_melbourne'))
+job = qiskit.execute(qc, provider.get_backend('ibmqx4'))
 result = job.result()
 
 print(job.job_id())
