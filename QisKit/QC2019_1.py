@@ -1,5 +1,6 @@
 import matplotlib
-matplotlib.use('tkAgg')
+matplotlib.use('tkagg')
+import matplotlib.pyplot as plt
 
 import numpy as np
 from qiskit import ( QuantumRegister, ClassicalRegister, QuantumCircuit, execute, Aer)
@@ -22,5 +23,8 @@ result = job.result()
 counts = result.get_counts(circ)
 print("\nTotal count for 0 and 11 are: %s" %counts)
 
-plot_histogram(counts)
+p = plot_histogram(counts)
+p.savefig('out.png')
+# p.show()
+
 
